@@ -2,7 +2,7 @@ import Hapi from '@hapi/hapi'
 import Boom from '@hapi/boom'
 
 
-const scheme: Hapi.ServerAuthScheme = () => ({ 
+const scheme: Hapi.ServerAuthScheme = () => ({
   authenticate: function (request, h) {
     if (!request.query['potato']) throw Boom.unauthorized(null, 'Custom')
     // const secret = request.headers['api-secret']
@@ -11,8 +11,8 @@ const scheme: Hapi.ServerAuthScheme = () => ({
     if (!request.headers['api-secret']) throw Boom.unauthorized(null, 'Custom')
     if (!request.headers['api-key']) throw Boom.unauthorized(null, 'Custom')
 
-    return h.authenticated({ credentials: { usr: 'potato-head' } })
-  }
+    return h.authenticated({credentials: {usr: 'potato-head'}})
+  },
 })
 
 
@@ -27,4 +27,3 @@ export default Object.freeze<Hapi.Plugin<void>>({
     server.auth.strategy('strategy-foo', 'scheme-foo')
   },
 })
-

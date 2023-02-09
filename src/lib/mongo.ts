@@ -10,8 +10,8 @@ export default Object.freeze<Hapi.Plugin<void>>({
   version: '1.0.0',
   register: async server => {
 
-    const usr = "myUser";
-    const pwd = "ItrLv0yHdkZuN6cH";
+    const usr = 'myUser'
+    const pwd = 'ItrLv0yHdkZuN6cH'
     const options: hapiMongo.Options = {
       url: `mongodb+srv://${usr}:${pwd}@cluster0.fjwjmb0.mongodb.net/ToDo?retryWrites=true&w=majority`,
       settings: {useUnifiedTopology: true},

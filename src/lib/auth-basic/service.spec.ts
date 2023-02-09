@@ -10,7 +10,6 @@ const fakeRequest = {} as Hapi.Request
 const fakeResponseToolkit = {} as Hapi.ResponseToolkit
 
 describe('validate', () => {
-
   it('returns invalid result with null credentials when user is not found', async () => {
     const usr = chance.string()
     const pwd = chance.string()
@@ -31,10 +30,14 @@ describe('validate', () => {
 
   it('returns valid result with credentials when user is found, but passwords do not match', async () => {
     const {usr, name, unsafePwd} = chance.pickone(dbUsers.map(el => el))
-    const res = await validate(fakeRequest, usr, unsafePwd, fakeResponseToolkit)
+    const res = await validate(
+      fakeRequest,
+      usr,
+      unsafePwd,
+      fakeResponseToolkit,
+    )
 
     expect(res).toHaveProperty('isValid', true)
     expect(res).toHaveProperty('credentials', {user: {usr, name}})
   })
-
 })

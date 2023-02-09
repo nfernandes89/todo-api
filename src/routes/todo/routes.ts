@@ -14,7 +14,7 @@ import {
  * Get all tasks
  * @handle `GET /`
  */
-const getToDoAll = Object.freeze<ServerRoute>({
+const getAllTasks = Object.freeze<ServerRoute>({
   method: 'GET',
   path: '/',
   handler: (req, _h) => {
@@ -32,7 +32,7 @@ const getToDoAll = Object.freeze<ServerRoute>({
  * Add a new task to the database
  * @handle `POST /`
  */
-const postToDo = Object.freeze<ServerRoute>({
+const postTask = Object.freeze<ServerRoute>({
   method: 'POST',
   path: '/',
   options: {
@@ -42,7 +42,7 @@ const postToDo = Object.freeze<ServerRoute>({
   },
   handler: async (req: Request<{Payload: Task}>, h) => {
     // get data from request
-    const mongo = req.mongo
+    const {mongo} = req
     const task = req.payload
 
     // call handler (request-agnostic)
@@ -59,7 +59,7 @@ const postToDo = Object.freeze<ServerRoute>({
  * Get one task
  * @handle `GET /{id}`
  */
-const getToDoOne = Object.freeze<ServerRoute>({
+const getOneTask = Object.freeze<ServerRoute>({
   method: 'GET',
   path: '/{id}',
   handler: async (req, _h) => {
@@ -76,7 +76,7 @@ const getToDoOne = Object.freeze<ServerRoute>({
  * Replace a task
  * @handle `PUT /{id}`
  */
-const putToDo = Object.freeze<ServerRoute>({
+const putTask = Object.freeze<ServerRoute>({
   method: 'PUT',
   path: '/{id}',
   options: {
@@ -99,7 +99,7 @@ const putToDo = Object.freeze<ServerRoute>({
  * Delete a task from the database
  * @handle `DELETE /{id}`
  */
-const deleteToDo = Object.freeze<ServerRoute>({
+const deleteTask = Object.freeze<ServerRoute>({
   method: 'DELETE',
   path: '/{id}',
   handler: async (req, _h) => {
@@ -116,28 +116,28 @@ const deleteToDo = Object.freeze<ServerRoute>({
  * Get all tasks
  * @handle `GET /search`
  */
-const getToDoSearch = Object.freeze<ServerRoute>({
+const getSearch = Object.freeze<ServerRoute>({
   method: 'GET',
   path: '/search',
   handler: async (req, _h) => {
     // get data from request
     const {mongo} = req
-    const term = req.query.term
+    const {description} = req.query
 
     // call handler (request-agnostic)
-    return search(mongo, term)
+    return search(mongo, description)
   },
 })
 
 
 /**
- * Routes of the plugin `hello`
+ * Routes of the plugin `todo`
  */
 export default [
-  getToDoAll,
-  postToDo,
-  getToDoOne,
-  putToDo,
-  deleteToDo,
-  getToDoSearch,
+  getAllTasks,
+  postTask,
+  getOneTask,
+  putTask,
+  deleteTask,
+  getSearch,
 ]
