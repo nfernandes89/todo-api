@@ -129,7 +129,6 @@ const getSearch = Object.freeze<ServerRoute>({
   },
 })
 
-
 /**
  * Routes of the plugin `todo`
  */

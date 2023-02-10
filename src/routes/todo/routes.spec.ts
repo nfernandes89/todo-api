@@ -40,6 +40,7 @@ afterAll(() => { jest.restoreAllMocks() })
 describe.only('route GET /', () => {
   const method = 'GET'
   const url = '/'
+
   it('exists and calls expected handler', async () => {
     const res = await server.inject({method, url})
     expect(res.statusCode).toEqual(200)
@@ -50,36 +51,36 @@ describe.only('route GET /', () => {
 describe.only('route POST /', () => {
   const method = 'POST'
   const url = '/'
-  const validObj: service.Task = {
+  const validObject: service.Task = {
     description: chance.string(),
     done: chance.bool(),
     dueDate: chance.date(),
   }
 
   it('exists and calls expected handler', async () => {
-    const payload = JSON.stringify(validObj)
+    const payload = JSON.stringify(validObject)
     const res = await server.inject({method, url, payload})
     expect(res.statusCode).toEqual(201)
     expect(res.result).toEqual(fakePostOne)
   })
 
   it('validates payload', async () => {
-    const errorObjDescription = {...validObj, description: 123}
-    const payload = JSON.stringify(errorObjDescription)
+    const errorObjectDescription = {...validObject, description: true}
+    const payload = JSON.stringify(errorObjectDescription)
     const res = await server.inject({method, url, payload})
     expect(res.statusCode).toEqual(400)
   })
 
   it('validates payload done', async () => {
-    const errorObjDone = {...validObj, done: 'hello'}
-    const payload = JSON.stringify(errorObjDone)
+    const errorObjectDone = {...validObject, done: 'hello'}
+    const payload = JSON.stringify(errorObjectDone)
     const res = await server.inject({method, url, payload})
     expect(res.statusCode).toEqual(400)
   })
 
   it('validates payload dueDate', async () => {
-    const errorObjDueDate = {...validObj, dueDate: 'hello'}
-    const payload = JSON.stringify(errorObjDueDate)
+    const errorObjectDueDate = {...validObject, dueDate: 'hello'}
+    const payload = JSON.stringify(errorObjectDueDate)
     const res = await server.inject({method, url, payload})
     expect(res.statusCode).toEqual(400)
   })
@@ -89,6 +90,7 @@ describe.only('route GET /{id}', () => {
   const id = chance.guid()
   const method = 'GET'
   const url = `/${id}`
+
   it('exists and calls expected handler', async () => {
     const res = await server.inject({method, url})
     expect(res.statusCode).toEqual(200)
@@ -100,36 +102,36 @@ describe.only('route PUT /{id}', () => {
   const id = chance.guid()
   const method = 'PUT'
   const url = `/${id}`
-  const validObj: service.Task = {
+  const validObject: service.Task = {
     description: chance.string(),
     done: chance.bool(),
     dueDate: chance.date(),
   }
 
   it('exists and calls expected handler', async () => {
-    const payload = JSON.stringify(validObj)
+    const payload = JSON.stringify(validObject)
     const res = await server.inject({method, url, payload})
     expect(res.statusCode).toEqual(200)
     expect(res.result).toEqual(fakePutOne)
   })
 
   it('validates payload description', async () => {
-    const errorObjDescription = {...validObj, description: 123}
-    const payload = JSON.stringify(errorObjDescription)
+    const errorObjectDescription = {...validObject, description: 123}
+    const payload = JSON.stringify(errorObjectDescription)
     const res = await server.inject({method, url, payload})
     expect(res.statusCode).toEqual(400)
   })
 
   it('validates payload done', async () => {
-    const errorObjDone = {...validObj, done: 'hello'}
-    const payload = JSON.stringify(errorObjDone)
+    const errorObjectDone = {...validObject, done: 'hello'}
+    const payload = JSON.stringify(errorObjectDone)
     const res = await server.inject({method, url, payload})
     expect(res.statusCode).toEqual(400)
   })
 
   it('validates payload dueDate', async () => {
-    const errorObjDueDate = {...validObj, dueDate: 'hello'}
-    const payload = JSON.stringify(errorObjDueDate)
+    const errorObjectDueDate = {...validObject, dueDate: 'hello'}
+    const payload = JSON.stringify(errorObjectDueDate)
     const res = await server.inject({method, url, payload})
     expect(res.statusCode).toEqual(400)
   })
@@ -139,6 +141,7 @@ describe.only('route DELETE /{id}', () => {
   const id = chance.guid()
   const method = 'DELETE'
   const url = `/${id}`
+
   it('exists and calls expected handler', async () => {
     const res = await server.inject({method, url})
     expect(res.statusCode).toEqual(200)
@@ -149,8 +152,9 @@ describe.only('route DELETE /{id}', () => {
 describe.only('route GET /search', () => {
   const method = 'GET'
   const url = '/search'
+
   it('exists and calls expected handler', async () => {
-    const res = await server.inject({method: 'GET', url: '/search'})
+    const res = await server.inject({method, url})
     expect(res.statusCode).toEqual(200)
     expect(res.result).toEqual(fakeSearch)
   })

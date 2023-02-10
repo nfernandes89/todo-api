@@ -27,3 +27,4 @@ export default Object.freeze<Hapi.Plugin<void>>({
     server.auth.strategy('strategy-foo', 'scheme-foo')
   },
 })
+

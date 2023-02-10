@@ -5,8 +5,8 @@ import pluginAuthBasic from './lib/auth-basic'
 import pluginAuthFoo from './lib/auth-foo'
 import pluginMongo from './lib/mongo'
 
-import todo from './routes/todo'
 import authBasic from './routes/routes-basic'
+import todo from './routes/todo'
 
 
 /**
@@ -29,8 +29,8 @@ export default async (options?: Hapi.ServerOptions): Promise<Readonly<Hapi.Serve
   ])
 
   await Promise.all([
-    server.register(todo, {routes: {prefix: '/api/todo'}}),
     server.register(authBasic, {routes: {prefix: '/api/route-basic'}}),
+    server.register(todo, {routes: {prefix: '/api/todo'}}),
   ])
 
   await server.initialize()
