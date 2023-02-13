@@ -14,7 +14,7 @@
 <br>
 
 <h2>Testing with Postman</h2>
-<p>Using Postman to perform CRUD requests:</p>
+<p>Using <strong>Postman</strong> to perform CRUD requests:</p>
 <p><strong>GET</strong> all tasks: /api/todo</p>
 <p><strong>POST</strong> a new task: /api/todo (insert the new task in Body -> Raw -> JSON)</p>
 <p><strong>GET</strong> one task: /api/todo/{id}</p>
