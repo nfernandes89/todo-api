@@ -7,7 +7,7 @@
   
 <h2>Code Flow</h2>
 <p>1 - <code>app.ts</code></p>
-<p>2 - <code>server.ts</code> (ATTENTION: MongoDB plugin in <code>src/lib/mongo.ts</code></p>
+<p>2 - <code>server.ts</code> (ATTENTION: see MongoDB plugin in <code>src/lib/mongo.ts</code></p>
 <p>3 - <code>routes/todo/index.ts</code></p>
 <p>4 - <code>routes/todo/routes.ts</code></p>
 <p>5 - <code>routes/todos/service.ts</code></p>
